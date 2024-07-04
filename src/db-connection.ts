@@ -2,14 +2,7 @@ import { createTunnel } from "tunnel-ssh"
 import { Server } from "net";
 import { Pool } from "pg"
 import fs from "fs"
-
-type TunnelStatusEnumType = "unset" | "connecting" | "creating" | "connected" | "closed";
-type ResultCodeEnumType = 200 | 429 | 500
-
-type ResultType = {
-  code: ResultCodeEnumType
-  data?: any
-}
+import { TunnelStatusEnumType, ResultType } from "./types";
 
 /**
  * Localhost
@@ -85,7 +78,7 @@ const pgConfig = {
  */
 export const updateTunnelStatus = (status: TunnelStatusEnumType, server?: Server) => {
   console.log(`Tunnel ${status}`)
-  if (status === "connected") {
+  if (status === "created") {
     tunnelServer = server
     tunnelServer.on("close", () => updateTunnelStatus("closed"))
   }
@@ -123,17 +116,17 @@ export const queryPostgres = async (query: string) => {
     code: 200
   };
 
-  if (tunnelStatus === "connecting") {
-    console.log("Tunnel connection in progress")
+  if (tunnelStatus === "creating") {
+    console.log("Tunnel creation in progress")
     result.code = 429
     return result
   }
 
   try {
     if ((tunnelStatus === "unset" || tunnelStatus === "closed") && !tunnelServer) {
-      updateTunnelStatus("connecting");
+      updateTunnelStatus("creating");
       const [server] = await createTunnel(tunnelOptions, serverOptions, sshOptions, forwardOptions);
-      updateTunnelStatus("connected", server);
+      updateTunnelStatus("created", server);
     }
     const rows = await poolPostgres(query);
     result.data = rows
