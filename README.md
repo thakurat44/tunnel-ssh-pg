@@ -54,3 +54,7 @@ PG_CONN_TIMEOUT=""
 ```bash
 npm start
 ```
+
+Open `localhost:<APP_PORT>/health` with your browser or `[GET] localhost:<APP_PORT>/health` API in your Postman to see the result.
+
+Check console logs to see application logs
