@@ -1,6 +1,6 @@
-# tunnel-ssh-pg
+# tunnel-ssh-pg *`Example`*
 
-Connect to your PostgreSQL db via Tunnel-SSH
+Connect to your PostgreSQL db via Tunnel-SSH.
 
 ## Getting Started
 
@@ -45,7 +45,7 @@ PG_DATABASE=""
 PG_CONN_TIMEOUT=""
 ```
 
-_Save your `.env` file._
+*Save your `.env` file.*
 
 ---
 
