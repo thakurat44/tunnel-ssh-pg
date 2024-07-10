@@ -24,7 +24,7 @@ Connect to your PostgreSQL db via Tunnel-SSH.
 npm install
 ```
 
-**Create `.env` file in your root folder and paste below environment variables with your values in it.**
+### Create `.env` file in your root folder and paste below environment variables with your values in it
 
 ```bash
 # YOUR APPLICATION PORT
@@ -63,7 +63,7 @@ PG_CONN_TIMEOUT=""
 
 ---
 
-#### Start your local server
+### Start your local server
 
 ```bash
 npm start
