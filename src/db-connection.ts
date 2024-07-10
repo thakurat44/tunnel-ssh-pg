@@ -25,7 +25,10 @@ let tunnelStatus: TunnelStatusEnumType = "unset";
 let tunnelServer: Server;
 
 /**
- * Tunnel Options
+ * Tunnel Server Options
+ * 
+ * @autoClose "true" will closes the Tunnel-Server once all clients disconnect from the server
+ * @autoClose "false" will keep the Tunnel-Server alive until you close it manually
  */
 const tunnelOptions = {
   autoClose: true
@@ -33,6 +36,11 @@ const tunnelOptions = {
 
 /**
  * SSH Options
+ * 
+ * @host Your SSH server host
+ * @prop Your SSH server port
+ * @username Your SSH server user name
+ * @privateKey Your SSH private key to connect to the SSH server
  */
 const sshOptions = {
   host: process.env.SERVER_HOST,
@@ -42,7 +50,12 @@ const sshOptions = {
 };
 
 /**
- * Server Options
+ * Local Server Options.
+ * 
+ * This is where you can access your SSH server connection in your machine
+ * 
+ * @host Your local server host
+ * @prop Your local server port
  */
 const serverOptions = {
   host: localhost,
@@ -51,6 +64,13 @@ const serverOptions = {
 
 /**
  * Forward Options
+ * 
+ * Take Postgres connection available in your SSH server and move them to your local server
+ * 
+ * @srcAddr Your local server host
+ * @srcPort Your local server port
+ * @dstAddr Postgres connection host from your SSH server
+ * @dstPort Postgres connection port from your SSH server
  */
 const forwardOptions = {
   srcAddr: localhost,
@@ -60,7 +80,16 @@ const forwardOptions = {
 }
 
 /**
- * PG Config
+ * Postgres Config
+ * 
+ * Postgres connection from SSH server will be available in your local server after ssh tunneling
+ * 
+ * @host Postgres host
+ * @port Postgres port
+ * @user Postgres username
+ * @password Postgres password
+ * @database Postgres database name
+ * @connectionTimeoutMillis Postgres database connection timeout
  */
 const pgConfig = {
   host: localhost,
@@ -73,6 +102,9 @@ const pgConfig = {
 
 /**
  * Update Tunnel Status
+ * 
+ * Keeps the information of any open tunnel
+ * 
  * @param status Tunnel Status
  * @param server Tunnel Server
  */
@@ -90,8 +122,9 @@ export const updateTunnelStatus = (status: TunnelStatusEnumType, server?: Server
 
 /**
  * Pool Query Postgres
+ * 
  * @param query Query String
- * @returns 
+ * @returns Rows from table or Empty object
  */
 export const poolPostgres = async (query: string) => {
   try {
@@ -108,8 +141,9 @@ export const poolPostgres = async (query: string) => {
 
 /**
  * Query Postgres
+ * 
  * @param query Query String
- * @returns 
+ * @returns Result
  */
 export const queryPostgres = async (query: string) => {
   const result: ResultType = {
