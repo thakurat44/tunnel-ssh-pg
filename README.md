@@ -7,13 +7,13 @@ Connect to your PostgreSQL db via Tunnel-SSH.
 **With the help of** `tunnel-ssh`
 
 - Connect to the server using ssh config.
-- Forward db host and port to your localhost and localport
-- Create a tunnel connection
+- Forward db host and port to your localhost and localport.
+- Create a tunnel connection.
 - Here is the [**README**](https://github.com/agebrock/tunnel-ssh#readme) for `tunnel-ssh` if you need more understanding.
 
 **With the help of** `pg`
 
-- Connect to the database and create a Pool for quick queries
+- Connect to the database and create a Pool for quick queries.
 - Here is the [**Documentation**](https://node-postgres.com/) for `pg`. Use to create your own functions.
 
 ---
@@ -24,7 +24,7 @@ Connect to your PostgreSQL db via Tunnel-SSH.
 npm install
 ```
 
-#### Create `.env` file in your root folder and paste below environment variables with your values in it
+**Create `.env` file in your root folder and paste below environment variables with your values in it.**
 
 ```bash
 # YOUR APPLICATION PORT
@@ -71,4 +71,4 @@ npm start
 
 Open `localhost:<APP_PORT>/health` with your browser or `[GET] localhost:<APP_PORT>/health` API in your Postman to see the result.
 
-Check console logs to see application logs
+Check console logs to see application logs.
