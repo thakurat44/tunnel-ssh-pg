@@ -9,6 +9,7 @@ Connect to your PostgreSQL db via Tunnel-SSH.
 - Connect to the server using ssh config.
 - Forward db host and port to your localhost and localport
 - Create a tunnel connection
+- Here is the [**README**](https://github.com/agebrock/tunnel-ssh#readme) for `tunnel-ssh` if you need more understanding.
 
 **With the help of** `pg`
 
